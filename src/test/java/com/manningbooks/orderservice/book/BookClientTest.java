@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -62,5 +64,21 @@ class BookClientTest {
                 )
                 .verifyComplete();
     }
+
+    @Test
+    void whenBookNotExistsThenReturnEmpty() {
+        var bookIsbn = "1234567891";
+
+        var mockResponse = new MockResponse()
+                .addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .setResponseCode(404);
+
+        mockWebServer.enqueue(mockResponse);
+
+        StepVerifier.create(bookClient.getBookByIsbn(bookIsbn))
+                .expectNextCount(0)
+                .verifyComplete();
+    }
+
 
 }
