@@ -159,8 +159,8 @@ class OrderServiceApplicationTests {
 					List<Long> orderIds = orders.stream()
 							.map(Order::id)
 							.collect(Collectors.toList());
-//					assertThat(orderIds).contains(orderByBjorn.id());
-//					assertThat(orderIds).doesNotContain(orderByIsabelle.id());
+					assertThat(orderIds).contains(orderByBjorn.id());
+					assertThat(orderIds).doesNotContain(orderByIsabelle.id());
 				});
 	}
 

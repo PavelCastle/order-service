@@ -1,7 +1,9 @@
 package com.manningbooks.orderservice.order.domain;
 
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
@@ -24,6 +26,11 @@ public record Order(
         @LastModifiedDate
         Instant lastModifiedDate,
 
+        @CreatedBy
+        String createdBy,
+        @LastModifiedBy
+        String lastModifiedBy,
+
         @Version
         int version
 ) {
@@ -31,7 +38,8 @@ public record Order(
             String bookIsbn, String bookName, Double bookPrice, Integer quantity, OrderStatus status
     ) {
         return new Order(
-                null, bookIsbn, bookName, bookPrice, quantity,status, null, null, 0
+                null, bookIsbn, bookName, bookPrice, quantity, status,
+                null, null, null, null, 0
         );
     }
 }
