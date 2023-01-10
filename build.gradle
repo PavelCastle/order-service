@@ -43,6 +43,8 @@ dependencies {
     runtimeOnly 'org.springframework:spring-jdbc'
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
     runtimeOnly 'io.netty:netty-resolver-dns-native-macos:4.1.86.Final:osx-aarch_64'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
 
 
     annotationProcessor 'org.projectlombok:lombok'
