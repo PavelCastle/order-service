@@ -61,3 +61,14 @@ spring:
     connection-timeout: 5s
 polar:
   catalog-service-uri: "http://localhost:9001"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
