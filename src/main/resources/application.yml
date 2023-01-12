@@ -61,17 +61,25 @@ spring:
     connection-timeout: 5s
 polar:
   catalog-service-uri: "http://localhost:9001"
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
 management:
   endpoints:
     web:
       exposure:
-        include: health, prometheus
+        include: configprops, env, gateway, health, heapdump, info, loggers, mappings, prometheus
   endpoint:
     health:
       show-details: always
       show-components: always
       probes:
         enabled: true
+      group:
+        readiness:
+          include: readinessState,redis
   metrics:
     tags:
       application: ${spring.application.name}
